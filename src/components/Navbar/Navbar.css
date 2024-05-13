@@ -17,6 +17,10 @@ header nav {
   padding: 0 150px;
   transition: 0.5s ease;
 }
+header nav .navbar-toggler:focus {
+  border: none;
+  box-shadow: unset;
+}
 header .bg-dark {
   --bs-bg-opacity: 1;
   background-color: #000000 !important;

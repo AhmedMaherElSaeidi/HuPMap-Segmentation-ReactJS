@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { FaHome } from "react-icons/fa";
 import { GiKidneys } from "react-icons/gi";
 import { FaRegLightbulb } from "react-icons/fa";
+import { HiDotsVertical } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -52,7 +53,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            <GiKidneys /> HupMap-Hacking the Human Vasculature
+            <GiKidneys /> HupMap - Human Vasculature
           </Link>
           <button
             className="navbar-toggler"
@@ -63,7 +64,7 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <HiDotsVertical/>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
