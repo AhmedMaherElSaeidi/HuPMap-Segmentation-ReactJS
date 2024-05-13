@@ -1,9 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import PredictPage from "./pages/PredictPage/PredictPage";
 import HomePage from "./pages/HomePage/HomePage";
 import Layout from "./Layout/Layout";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Layout />,
