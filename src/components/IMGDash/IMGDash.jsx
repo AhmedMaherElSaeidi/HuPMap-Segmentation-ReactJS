@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react";
 const IMGDash = (plot_data) => {
   const KEYS = [
     { key: "image", name: "Image" },
-    { key: "overlaid_mask", name: "Overlay" },
+    { key: "overlaid_image_true", name: "Image by True Mask" },
+    { key: "overlaid_image_pred", name: "Image by Pred Mask" },
+    { key: "overlaid_mask", name: "Overlaid Masks" },
     { key: "true_mask", name: "True Mask" },
     { key: "predicted_mask", name: "Pred Mask" },
   ];

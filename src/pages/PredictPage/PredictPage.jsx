@@ -26,7 +26,7 @@ const PredictPage = () => {
       image: files[0] || null,
       mask: files[1] || null,
     });
-    // console.log(`image:, ${files[0].name}, mask: ${files[1].name}`);
+    console.log(`image:, ${files[0].name}, mask: ${files[1].name}`);
   };
   const onSubmit = async () => {
     try {
