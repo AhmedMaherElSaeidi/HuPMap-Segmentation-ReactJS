@@ -29,10 +29,8 @@ const IMGDash = (plot_data) => {
           <h3 className="text-center">
             Segmenting blood vessels at
             <span> {dashData["threshold"]}%</span> threshold <br />
-            <span>{ceiledDecimal(dashData["iou_score"] * 100)}%</span> Mean
-            IOU, and
-            <span> {ceiledDecimal(dashData["dice_score"] * 100)}%</span> Mean
-            Dice
+            <span>{ceiledDecimal(dashData["iou_score"] * 100)}%</span>  IOU score, and
+            <span> {ceiledDecimal(dashData["dice_score"] * 100)}%</span>  Dice score
           </h3>
         </div>
       )}
