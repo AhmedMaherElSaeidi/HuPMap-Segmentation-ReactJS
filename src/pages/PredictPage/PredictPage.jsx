@@ -7,14 +7,25 @@ import { FaUpload, FaRegLightbulb } from "react-icons/fa";
 import background_video from "../../assets/video/HuPMap.mp4";
 
 const PredictPage = () => {
-  const CONFIGS = { HOST: "localhost", PORT: "6100", METHOD: "unet" };
+  const models = [
+    { name: "Unet", api: "unet" },
+    { name: "Scratch Unet", api: "unet_scratch" },
+    { name: "Linknet", api: "linknet" },
+    { name: "FCN", api: "fcn" },
+    { name: "Ensemble", api: "ensemble" },
+  ];
+  const [configs, setConfigs] = useState({
+    HOST: "localhost",
+    PORT: "6100",
+    METHOD: models[0].api,
+  });
   const [predictData, setPredictData] = useState({
     response: null,
     image: null,
     mask: null,
     loading: false,
     err: false,
-    service_url: `http://${CONFIGS.HOST}:${CONFIGS.PORT}/predict/${CONFIGS.METHOD}`,
+    service_url: `http://${configs.HOST}:${configs.PORT}/predict/${configs.METHOD}`,
   });
 
   const handleFileChange = (event) => {
@@ -70,9 +81,23 @@ const PredictPage = () => {
       {!predictData.response && (
         <section className="form">
           <div className="form-box">
-            <h2>
+            <h2 className="mb-2">
               <FaUpload />
             </h2>
+            <div className="selectBox mb-2">
+              <select
+                value={configs.METHOD}
+                onChange={(e) =>
+                  setConfigs({ ...configs, METHOD: e.target.value })
+                }
+              >
+                {models.map((model, index) => (
+                  <option key={index} value={model.api}>
+                    {model.name}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="inputBox">
               <input
                 type="file"
