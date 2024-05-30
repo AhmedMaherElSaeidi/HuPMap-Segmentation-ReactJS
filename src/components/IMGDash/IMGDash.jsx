@@ -1,7 +1,7 @@
 import "./IMGDash.css";
 import React, { useEffect, useState } from "react";
 
-const IMGDash = (plot_data) => {
+const IMGDash = ({plot_data, model_name}) => {
   const KEYS = [
     { key: "image", name: "Image" },
     { key: "overlaid_image_true", name: "Image by True Mask" },
@@ -12,9 +12,9 @@ const IMGDash = (plot_data) => {
   ];
   const [dashData, setDashData] = useState(null);
   useEffect(() => {
-    setDashData(plot_data.plot_data);
+    setDashData(plot_data);
   }, [plot_data]);
-
+  
   const ceiledDecimal = (value) => {
     return Math.ceil(value * 100) / 100;
   };
@@ -27,10 +27,12 @@ const IMGDash = (plot_data) => {
       {dashData && (
         <div className="result-info">
           <h3 className="text-center">
-            Segmenting blood vessels at
+            {model_name} segmented blood vessels at
             <span> {dashData["threshold"]}%</span> threshold <br />
-            <span>{ceiledDecimal(dashData["iou_score"] * 100)}%</span>  IOU score, and
-            <span> {ceiledDecimal(dashData["dice_score"] * 100)}%</span>  Dice score
+            <span>{ceiledDecimal(dashData["iou_score"] * 100)}%</span> IOU
+            score, and
+            <span> {ceiledDecimal(dashData["dice_score"] * 100)}%</span> Dice
+            score
           </h3>
         </div>
       )}

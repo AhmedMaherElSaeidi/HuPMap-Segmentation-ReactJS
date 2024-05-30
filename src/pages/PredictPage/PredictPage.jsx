@@ -53,11 +53,15 @@ const PredictPage = () => {
       formData.append("mask", predictData.mask);
 
       setPredictData({ ...predictData, loading: true });
-      const response = await axios.post(`http://${configs.HOST}:${configs.PORT}/predict/${configs.METHOD}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        `http://${configs.HOST}:${configs.PORT}/predict/${configs.METHOD}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       setPredictData({ ...predictData, loading: false, response: response });
     } catch (err) {
@@ -68,7 +72,7 @@ const PredictPage = () => {
   const reset_predictData = () => {
     setPredictData({ ...predictData, image: null, mask: null, response: null });
   };
-  
+
   return (
     <div className="predict-page">
       <div className="video-container">
@@ -131,7 +135,12 @@ const PredictPage = () => {
         </button>
       )}
       {predictData.response && (
-        <IMGDash plot_data={predictData.response.data} />
+        <IMGDash
+          plot_data={predictData.response.data}
+          model_name={
+            models.filter((value) => value.api == configs.METHOD)[0].name
+          }
+        />
       )}
     </div>
   );
