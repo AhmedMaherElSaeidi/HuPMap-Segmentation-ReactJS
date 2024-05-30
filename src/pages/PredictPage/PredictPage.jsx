@@ -25,7 +25,6 @@ const PredictPage = () => {
     mask: null,
     loading: false,
     err: false,
-    service_url: `http://${configs.HOST}:${configs.PORT}/predict/${configs.METHOD}`,
   });
 
   const handleFileChange = (event) => {
@@ -54,7 +53,7 @@ const PredictPage = () => {
       formData.append("mask", predictData.mask);
 
       setPredictData({ ...predictData, loading: true });
-      const response = await axios.post(predictData.service_url, formData, {
+      const response = await axios.post(`http://${configs.HOST}:${configs.PORT}/predict/${configs.METHOD}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -69,7 +68,7 @@ const PredictPage = () => {
   const reset_predictData = () => {
     setPredictData({ ...predictData, image: null, mask: null, response: null });
   };
-
+  
   return (
     <div className="predict-page">
       <div className="video-container">
