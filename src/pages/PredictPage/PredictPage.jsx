@@ -138,7 +138,7 @@ const PredictPage = () => {
         <IMGDash
           plot_data={predictData.response.data}
           model_name={
-            models.filter((value) => value.api == configs.METHOD)[0].name
+            models.filter((value) => value.api === configs.METHOD)[0].name
           }
         />
       )}

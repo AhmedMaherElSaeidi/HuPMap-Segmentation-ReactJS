@@ -45,6 +45,7 @@ const IMGDash = ({plot_data, model_name}) => {
               {dashData && (
                 <img
                   src={dashData[value.key]}
+                  alt="hupmap_image"
                   onClick={() => openImage(dashData[value.key])}
                 />
               )}
