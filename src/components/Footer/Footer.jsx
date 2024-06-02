@@ -10,9 +10,9 @@ const Footer = () => {
     <p className="footer__description">HuBMAP - Hacking the Human Vasculature Competition 09/2023</p>
 
     <div className="footer__social">
-      <a href="#" className="footer__link"><FaKaggle/></a>
-      <a href="#" className="footer__link"><FaGithub/></a>
-      <a href="#" className="footer__link"><FaCodepen/></a>
+      <span className="footer__link"><FaKaggle/></span>
+      <span className="footer__link"><FaGithub/></span>
+      <span className="footer__link"><FaCodepen/></span>
     </div>
     <p className="footer__copy">&#169; 2024 HuBMAP. All right reserved</p>
   </div>

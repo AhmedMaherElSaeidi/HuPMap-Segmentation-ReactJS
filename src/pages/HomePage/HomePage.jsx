@@ -51,6 +51,7 @@ const HomePage = () => {
                 className="btn btn-primary rounded-pill py-3 px-5 mt-3"
                 href="https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature"
                 target="_blank"
+                rel="noreferrer"
               >
                 Read More
               </a>
