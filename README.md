@@ -9,6 +9,4 @@ The goal is to segment instances of microvascular structures, including capillar
   
 ## Backend Repository
 [HuPMap-Segmentation-Flask](https://github.com/AhmedMaherElSaeidi/HuPMap-Segmentation-Flask)
-
-## Live Demo
-[Demo](https://pharaoooh.github.io/projects-list/HuPMAP/).
+[Live Demo](https://pharaoooh.github.io/projects-list/HuPMAP/).
