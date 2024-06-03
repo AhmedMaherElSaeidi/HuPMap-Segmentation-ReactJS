@@ -8,7 +8,7 @@ The goal is to segment instances of microvascular structures, including capillar
 - **Prediction Page**: To upload an image and its corresponding mask. After submission, the backend processes the data to return six images: the original image, the original image overlaid by the true mask,  the original image overlaid by the predicted mask, the true mask, the predicted mask, and an overlaid mask. Additionally, users receive IOU and Dice scores as indicators of segmentation accuracy, and the the threshold at which the mask was segmented.
 
 ## Live Demo
-[Live Demo](https://pharaoooh.github.io/projects-list/HuPMAP/).
+[Live Demo](https://pharaoooh.github.io/projects-list/HuPMAP/)
 
 ## Backend Repository
 [HuPMap-Segmentation-Flask](https://github.com/AhmedMaherElSaeidi/HuPMap-Segmentation-Flask)
