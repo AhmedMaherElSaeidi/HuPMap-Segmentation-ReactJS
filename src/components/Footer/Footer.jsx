@@ -1,6 +1,5 @@
 import "./Footer.css"
 import React from 'react'
-import { FaGithub, FaKaggle, FaCodepen } from 'react-icons/fa'
 
 const Footer = () => {
   return (
@@ -8,13 +7,7 @@ const Footer = () => {
   <div className="footer__container bd-container">
     <h2 className="footer__title">HuBMAP</h2>
     <p className="footer__description">HuBMAP - Hacking the Human Vasculature Competition 09/2023</p>
-
-    <div className="footer__social">
-      <span className="footer__link"><FaKaggle/></span>
-      <span className="footer__link"><FaGithub/></span>
-      <span className="footer__link"><FaCodepen/></span>
-    </div>
-    <p className="footer__copy">&#169; 2024 HuBMAP. All right reserved</p>
+    <p className="footer__copy"> 2024 HuBMAP. All right reserved</p>
   </div>
 </footer>
   )
