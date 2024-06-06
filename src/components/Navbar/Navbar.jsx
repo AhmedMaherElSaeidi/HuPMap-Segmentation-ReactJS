@@ -71,7 +71,7 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link
                   to="/home"
-                  className={isPathActive("/home") ? "nav-link text-info" : "nav-link"}
+                  className={isPathActive("/home") ? "nav-link text-warning" : "nav-link"}
                 >
                   <FaHome /> Home
                 </Link>
@@ -79,7 +79,7 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link
                   to="/predict"
-                  className={isPathActive("/predict") ? "nav-link text-info" : "nav-link"}
+                  className={isPathActive("/predict") ? "nav-link text-warning" : "nav-link"}
                 >
                   <FaRegLightbulb /> Predict
                 </Link>

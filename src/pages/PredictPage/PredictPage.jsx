@@ -1,9 +1,10 @@
 import "./PredictPage.css";
 import axios from "axios";
 import React, { useState } from "react";
+import { GiReturnArrow } from "react-icons/gi";
+import { FaCloudUploadAlt } from "react-icons/fa";
 import IMGDash from "../../components/IMGDash/IMGDash";
 import Spinner from "../../components/Spinner/Spinner";
-import { FaUpload, FaRegLightbulb } from "react-icons/fa";
 import background_video from "../../assets/video/HuPMap.mp4";
 
 const PredictPage = () => {
@@ -84,8 +85,8 @@ const PredictPage = () => {
       {!predictData.response && (
         <section className="form">
           <div className="form-box">
-            <h2 className="mb-2">
-              <FaUpload />
+            <h2 className="mb-3">
+              <FaCloudUploadAlt /> Segmentation
             </h2>
             <div className="selectBox mb-2">
               <select
@@ -124,23 +125,23 @@ const PredictPage = () => {
         </section>
       )}
       {predictData.response && (
-        <button
-          type="button"
-          className="btn btn-info mb-2"
-          onClick={() => {
-            reset_predictData();
-          }}
-        >
-          <FaRegLightbulb /> Upload Image
-        </button>
-      )}
-      {predictData.response && (
         <IMGDash
           plot_data={predictData.response.data}
           model_name={
             models.filter((value) => value.api === configs.METHOD)[0].name
           }
         />
+      )}
+      {predictData.response && (
+        <button
+          type="button"
+          className="btn btn-warning mt-2"
+          onClick={() => {
+            reset_predictData();
+          }}
+        >
+          <GiReturnArrow /> Upload Image
+        </button>
       )}
     </div>
   );

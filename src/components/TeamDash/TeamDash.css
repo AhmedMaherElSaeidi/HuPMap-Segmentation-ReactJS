@@ -72,7 +72,7 @@
 .team-info .card .details h2 span {
   font-weight: 500;
   font-size: 16px;
-  color: #2176cb;
+  color: goldenrod;
   display: block;
   margin-top: 5px;
 }
@@ -85,5 +85,5 @@
 }
 
 .team-info > h2 > .span-blue {
-  color: #2176cb;
+  color: goldenrod;
 }
