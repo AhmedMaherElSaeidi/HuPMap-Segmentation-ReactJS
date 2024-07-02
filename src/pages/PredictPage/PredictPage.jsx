@@ -1,6 +1,6 @@
 import "./PredictPage.css";
-import axios from "axios";
 import React, { useState } from "react";
+import segmentMapper from "../../services/ai-segmentation";
 import { GiReturnArrow } from "react-icons/gi";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import IMGDash from "../../components/IMGDash/IMGDash";
@@ -9,21 +9,19 @@ import background_video from "../../assets/video/HuPMap.mp4";
 
 const PredictPage = () => {
   const models = [
-    { name: "Unet", api: "unet" },
-    { name: "Scratch Unet", api: "unet_scratch" },
-    { name: "Linknet", api: "linknet" },
-    { name: "FCN", api: "fcn" },
-    { name: "Ensemble", api: "ensemble" },
+    { name: "Unet", method: "unet" },
+    { name: "Scratch Unet", method: "unet_scratch" },
+    { name: "Linknet", method: "linknet" },
+    { name: "FCN", method: "fcn" },
+    { name: "Ensemble", method: "ensemble" },
   ];
-  const [configs, setConfigs] = useState({
-    HOST: "localhost",
-    PORT: "6100",
-    METHOD: models[0].api,
+  const [inputsState, setInputsState] = useState({
+    method: models[0].method,
+    image: null,
+    mask: null,
   });
   const [predictData, setPredictData] = useState({
     response: null,
-    image: null,
-    mask: null,
     loading: false,
     err: false,
   });
@@ -32,46 +30,38 @@ const PredictPage = () => {
     const files = event.target.files;
     if (files.length !== 2) return;
 
-    setPredictData({
-      ...predictData,
-      image: files[0] || null,
-      mask: files[1] || null,
+    setInputsState({
+      ...inputsState,
+      image: files[0],
+      mask: files[1],
     });
     console.log(`image:, ${files[0].name}, mask: ${files[1].name}`);
   };
   const onSubmit = async () => {
-    try {
-      if (!predictData.image || !predictData.mask) {
-        alert("Hey, Two files are required.");
-        return;
-      }
-      if (predictData.loading) {
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("image", predictData.image);
-      formData.append("mask", predictData.mask);
-
-      setPredictData({ ...predictData, loading: true });
-      const response = await axios.post(
-        `http://${configs.HOST}:${configs.PORT}/predict/${configs.METHOD}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+    if (!predictData.loading) {
+      try {
+        if (!inputsState.image || !inputsState.mask) {
+          alert("Hey, Two files are required.");
+          return;
         }
-      );
 
-      setPredictData({ ...predictData, loading: false, response: response });
-    } catch (err) {
-      setPredictData({ ...predictData, loading: false, err: err });
-      alert(err.message);
+        const request_data = new FormData();
+        request_data.append("image", inputsState.image);
+        request_data.append("mask", inputsState.mask);
+
+        setPredictData({ ...predictData, loading: true });
+        const response = await segmentMapper[inputsState.method](request_data);
+
+        setPredictData({ ...predictData, loading: false, response });
+      } catch (err) {
+        setPredictData({ ...predictData, loading: false, err });
+        alert(err.message);
+      }
     }
   };
   const reset_predictData = () => {
-    setPredictData({ ...predictData, image: null, mask: null, response: null });
+    setPredictData({ ...predictData, response: null });
+    setInputsState({ ...inputsState, image: null, mask: null });
   };
 
   return (
@@ -90,13 +80,13 @@ const PredictPage = () => {
             </h2>
             <div className="selectBox mb-2">
               <select
-                value={configs.METHOD}
+                value={inputsState.method}
                 onChange={(e) =>
-                  setConfigs({ ...configs, METHOD: e.target.value })
+                  setInputsState({ ...inputsState, method: e.target.value })
                 }
               >
                 {models.map((model, index) => (
-                  <option key={index} value={model.api}>
+                  <option key={index} value={model.method}>
                     {model.name}
                   </option>
                 ))}
@@ -128,7 +118,8 @@ const PredictPage = () => {
         <IMGDash
           plot_data={predictData.response.data}
           model_name={
-            models.filter((value) => value.api === configs.METHOD)[0].name
+            models.filter((value) => value.method === inputsState.method)[0]
+              .name
           }
         />
       )}
